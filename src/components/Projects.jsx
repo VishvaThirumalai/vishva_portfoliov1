@@ -135,7 +135,7 @@ const Projects = () => {
       : projects.filter(p => p.category === "Game Development");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black-900 px-4 sm:px-6 py-16 sm:py-20 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-black-900 px-4 sm:px-6 py-20 sm:py-20 relative overflow-hidden ">
       {/* Clean Background - Same as About component */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-48 h-48 sm:w-72 sm:h-72 bg-black-500/5 rounded-full blur-3xl"></div>
@@ -147,7 +147,7 @@ const Projects = () => {
         <div className="absolute bottom-1/3 -right-20 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-full blur-3xl animate-orb-float" style={{animationDelay: '3s'}}></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full">
+      <div className="relative z-10 max-w-7xl mx-auto w-full pt-20">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
