@@ -20,6 +20,7 @@ const Header = ({ activeSection, scrollToSection }) => {
   const navigation = [
     { id: "about", name: "About" },
     { id: "projects", name: "Projects" },
+    { id: "Education", name: "Education" },
     { id: "certificates", name: "Certificates" },
     { id: "contact", name: "Contact" },
   ];
@@ -61,7 +62,7 @@ const Header = ({ activeSection, scrollToSection }) => {
           isScrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-black/80 backdrop-blur-sm'
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3">
           <div className="flex items-center justify-between">
             {/* Logo - Always visible */}
             <button

@@ -30,6 +30,10 @@ const Skills = () => {
 
   return (
     <section className="">
+       <div className=" bg-black relative overflow-hidden pt-20">
+      {/* Dark green shade at middle */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-900/40 to-transparent opacity-80"></div>
+      
       <div className="container mx-auto px-4">
         {/* Optional Heading */}
         <div className="text-center mb-16">
@@ -62,6 +66,7 @@ const Skills = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

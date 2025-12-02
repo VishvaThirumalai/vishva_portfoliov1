@@ -1,205 +1,146 @@
+import { useState } from 'react';
+
 const Certificates = () => {
   const certificatesData = [
     {
       id: 1,
-      name: "AWS Certified Solutions Architect - Professional",
-      issuer: "Amazon Web Services",
-      date: "December 2023",
-      credentialId: "AWS-SAP-12345",
-      category: "Cloud Computing",
-      skills: ["AWS Architecture", "Cloud Security", "Scalable Systems"],
-      verificationLink: "#",
-      icon: "aws"
+      name: "Python for Data Science",
+      issuer: "NPTEL",
+      date: "2024",
+      credentialId: "NPTEL-PYDS-2024",
+      category: "Data Science",
+      skills: ["Python", "Data Analysis", "Pandas", "NumPy"],
+      verificationLink: "/certificate1.pdf",
+      icon: "python"
     },
     {
       id: 2,
-      name: "Google Professional Machine Learning Engineer",
-      issuer: "Google Cloud",
-      date: "October 2023",
-      credentialId: "GCP-MLE-67890",
-      category: "Machine Learning",
-      skills: ["TensorFlow", "MLOps", "Model Deployment"],
-      verificationLink: "#",
-      icon: "google"
+      name: "Database Management System",
+      issuer: "NPTEL",
+      date: "2025",
+      credentialId: "NPTEL-DBMS-2025",
+      category: "Database Systems",
+      skills: ["SQL", "Database Design", "Normalization"],
+      verificationLink: "/certificate2.pdf",
+      icon: "database"
     },
     {
       id: 3,
-      name: "Microsoft Certified: Azure AI Engineer Associate",
-      issuer: "Microsoft",
-      date: "August 2023",
-      credentialId: "MS-AI-54321",
-      category: "Artificial Intelligence",
-      skills: ["Azure ML", "Cognitive Services", "AI Solutions"],
-      verificationLink: "#",
-      icon: "microsoft"
+      name: "Data Structures & Algorithms",
+      issuer: "NPTEL",
+      date: "2025",
+      credentialId: "NPTEL-DSA-2025",
+      category: "Computer Science",
+      skills: ["Algorithms", "Data Structures", "Complexity"],
+      verificationLink: "/certificate3.pdf",
+      icon: "algorithms"
     },
     {
       id: 4,
-      name: "Deep Learning Specialization",
-      issuer: "DeepLearning.AI",
-      date: "June 2023",
-      credentialId: "DL-SPEC-98765",
-      category: "Deep Learning",
-      skills: ["Neural Networks", "CNN", "RNN", "Transformers"],
-      verificationLink: "#",
-      icon: "deeplearning"
-    },
-    {
-      id: 5,
-      name: "Kubernetes and Cloud Native Associate",
-      issuer: "Cloud Native Computing Foundation",
-      date: "April 2023",
-      credentialId: "KCNA-24680",
-      category: "DevOps",
-      skills: ["Kubernetes", "Docker", "Cloud Native"],
-      verificationLink: "#",
-      icon: "kubernetes"
-    },
-    {
-      id: 6,
-      name: "TensorFlow Developer Certificate",
-      issuer: "TensorFlow",
-      date: "February 2023",
-      credentialId: "TFCERT-13579",
-      category: "Machine Learning",
-      skills: ["TensorFlow", "Keras", "Model Building"],
-      verificationLink: "#",
-      icon: "tensorflow"
+      name: "Mobile App Development",
+      issuer: "Naan Mudhalvan",
+      date: "2025",
+      credentialId: "NMP-HACK-2025",
+      category: "Mobile Development",
+      skills: ["Android", "Java", "Mobile UI/UX"],
+      verificationLink: "/certificate4.pdf",
+      icon: "mobile"
     }
   ];
 
   const getIcon = (iconName) => {
+    const iconClass = "w-6 h-6";
+    
     switch(iconName) {
-      case 'aws':
+      case 'python':
         return (
-          <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5v-7l6 3.5-6 3.5z"/>
+          <svg className={iconClass} fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.585 11.692h4.328s2.432.039 2.432-2.35V5.391S16.714 3 11.936 3C7.362 3 7.647 4.983 7.647 4.983l.006 2.055h4.363v.617H5.92s-2.927-.332-2.927 4.282 2.555 4.45 2.555 4.45h1.524v-2.141s-.083-2.554 2.513-2.554zm-.056-5.74a.784.784 0 110-1.57.784.784 0 010 1.57z"/>
+            <path d="M14.308 12.692H9.979s-2.432-.04-2.432 2.35v3.951s-.369 2.391 4.409 2.391c4.573 0 4.288-1.983 4.288-1.983l-.006-2.054h-4.363v-.617h6.096s2.927.332 2.927-4.282-2.555-4.45-2.555-4.45h-1.524v2.141s.083 2.554-2.513 2.554zm.056 5.74a.784.784 0 110 1.57.784.784 0 010-1.57z"/>
           </svg>
         );
-      case 'google':
+      case 'database':
         return (
-          <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5v-7l6 3.5-6 3.5z"/>
+          <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
           </svg>
         );
-      case 'microsoft':
+      case 'algorithms':
         return (
-          <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5v-7l6 3.5-6 3.5z"/>
+          <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z"/>
           </svg>
         );
-      case 'deeplearning':
+      case 'mobile':
         return (
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        );
-      case 'kubernetes':
-        return (
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        );
-      case 'tensorflow':
-        return (
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
           </svg>
         );
       default:
         return (
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <svg className={iconClass} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
         );
     }
   };
 
-  const getCategoryColor = (category) => {
-    switch(category) {
-      case 'Cloud Computing': return 'from-blue-500 to-cyan-500';
-      case 'Machine Learning': return 'from-purple-500 to-pink-500';
-      case 'Artificial Intelligence': return 'from-green-500 to-emerald-500';
-      case 'Deep Learning': return 'from-orange-500 to-red-500';
-      case 'DevOps': return 'from-indigo-500 to-purple-500';
-      default: return 'from-gray-500 to-gray-600';
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden py-16 sm:py-20">
-      {/* ... background elements remain the same ... */}
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-center">
-          Professional Certifications
-        </h2>
-        <p className="text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 text-base sm:text-lg">
-          Validated expertise through industry-recognized certifications and specialized training programs
-        </p>
-
-        {/* Header Card */}
-        <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
-          <div className="bg-gray-800/80 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-700 backdrop-blur-sm text-center">
-            <p className="text-gray-300 text-base sm:text-lg mb-4 sm:mb-6">
-              Professional development through continuous learning and industry validation.
-            </p>
-            <div className="w-20 sm:w-24 h-0.5 sm:h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-black-900 px-4 sm:px-6  sm:py-20">
+      <div className="relative z-10 max-w-6xl mx-auto w-full">
+        {/* Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-2xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
+            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              Certifications
+            </span>
+          </h2>
+          <p className="text-gray-300 text-lg sm:text-md max-w-2xl mx-auto">
+            Professional certifications from recognized platforms and institutions
+          </p>
         </div>
 
-        {/* Certificates Grid - 2 per row on mobile */}
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {certificatesData.map((cert) => (
-              <div 
-                key={cert.id}
-                className="bg-gray-800/80 rounded-xl sm:rounded-2xl shadow-lg border border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 backdrop-blur-sm group"
-              >
-                {/* Certificate Header with Gradient */}
-                <div className={`h-1 sm:h-2 bg-gradient-to-r ${getCategoryColor(cert.category)}`}></div>
+        {/* Certificates Grid - Clean 2x2 layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {certificatesData.map((cert, index) => (
+            <div 
+              key={cert.id}
+              className="group"
+            >
+              {/* Certificate Card */}
+              <div className="bg-gray-900/30 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50 transition-all duration-300 hover:border-gray-600/80 h-full">
                 
-                <div className="p-4 sm:p-6">
-                  {/* Icon and Category */}
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <div className="text-blue-400">
-                      {getIcon(cert.icon)}
+                <div className="p-6">
+                  {/* Header Row */}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="text-blue-400">
+                        {getIcon(cert.icon)}
+                      </div>
+                      <div>
+                        <span className="text-sm font-medium text-gray-400">{cert.category}</span>
+                        <div className="text-xs text-gray-500 mt-1">{cert.issuer}</div>
+                      </div>
                     </div>
-                    <span className="text-xs font-medium text-gray-400 bg-gray-700 px-2 sm:px-3 py-1 rounded-full">
-                      {cert.category}
-                    </span>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-300">{cert.date}</div>
+                      <div className="text-xs text-gray-500 font-mono mt-1">{cert.credentialId}</div>
+                    </div>
                   </div>
 
                   {/* Certificate Name */}
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3 group-hover:text-blue-400 transition-colors line-clamp-2">
+                  <h3 className="text-xl font-semibold text-white mb-4">
                     {cert.name}
                   </h3>
 
-                  {/* Issuer and Date */}
-                  <div className="space-y-1 sm:space-y-2 mb-3 sm:mb-4">
-                    <div className="flex items-center text-xs sm:text-sm text-gray-300">
-                      <span className="font-medium">Issuer:</span>
-                      <span className="ml-1 sm:ml-2 text-blue-300 truncate">{cert.issuer}</span>
-                    </div>
-                    <div className="flex items-center text-xs sm:text-sm text-gray-300">
-                      <span className="font-medium">Date:</span>
-                      <span className="ml-1 sm:ml-2 text-green-300">{cert.date}</span>
-                    </div>
-                    <div className="flex items-center text-xs sm:text-sm text-gray-300">
-                      <span className="font-medium">ID:</span>
-                      <span className="ml-1 sm:ml-2 text-purple-300 font-mono text-xs truncate">{cert.credentialId}</span>
-                    </div>
-                  </div>
-
                   {/* Skills */}
-                  <div className="mb-3 sm:mb-4">
-                    <h4 className="text-xs sm:text-sm font-semibold text-gray-400 mb-1 sm:mb-2">Skills Validated:</h4>
-                    <div className="flex flex-wrap gap-1">
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-2">
                       {cert.skills.map((skill, idx) => (
                         <span 
                           key={idx}
-                          className="bg-gray-700 text-gray-300 text-xs px-2 py-1 rounded border border-gray-600"
+                          className="bg-gray-800/50 text-gray-300 text-xs px-3 py-1.5 rounded border border-gray-700/50"
                         >
                           {skill}
                         </span>
@@ -207,21 +148,32 @@ const Certificates = () => {
                     </div>
                   </div>
 
-                  {/* Verify Button */}
-                  <div className="pt-3 sm:pt-4 border-t border-gray-600">
+                  {/* Action Button */}
+                  <div className="flex justify-end">
                     <a
                       href={cert.verificationLink}
-                      className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-3 sm:py-2 sm:px-4 rounded-lg transition-all duration-200 group/btn text-sm sm:text-base"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-800/80 text-gray-300 text-sm font-medium rounded-lg border border-gray-700/50 hover:border-gray-600/80 transition-all duration-300"
                     >
-                      <span>Verify Certificate</span>
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      <span>View Certificate</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                       </svg>
                     </a>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+
+        {/* Footer Note */}
+        <div className="mt-12 sm:mt-16 text-center">
+          <div className="inline-block border-t border-gray-700/50 pt-6">
+            <p className="text-gray-500 text-sm">
+              Continuously learning and validating skills through accredited programs
+            </p>
           </div>
         </div>
       </div>

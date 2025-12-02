@@ -464,11 +464,11 @@ const Hero = () => {
 
             {/* Image Content - First on mobile, right on desktop */}
             <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative order-1 lg:order-2 mb-6 lg:mb-0">
-              <div className="relative w-64 h-64 xs:w-72 xs:h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] xl:w-[550px] xl:h-[550px]">
+              <div className="">
                 {/* Canvas for subtle particles */}
                 <canvas
                   ref={canvasRef}
-                  className="absolute inset-0 w-full h-full z-12 rounded-full"
+                  className="absolute inset-0 w-full h-full z-12 "
                 />
                 
                 {/* Responsive Interactive Avatar Image */}
@@ -477,7 +477,7 @@ const Hero = () => {
                     ref={imageRef}
                     src="avatar.png" 
                     alt="Vishva T - AI Engineer"
-                    className="w-full h-full rounded-full object-cover transition-transform duration-300 ease-out"
+                    className="w-full h-full  object-cover transition-transform duration-300 ease-out"
                     style={{ 
                       transform: 'translate(0px, 0px) rotateX(0deg) rotateY(0deg) scale(1)',
                       objectFit: 'cover'
@@ -485,9 +485,7 @@ const Hero = () => {
                   />
                 </div>
 
-                {/* Subtle glow effect */}
-                <div className="absolute inset-0 rounded-full bg-blue-500/10 pulse-slow"></div>
-              </div>
+                 </div>
             </div>
           </div>
         </div>

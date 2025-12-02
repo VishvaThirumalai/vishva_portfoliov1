@@ -21,11 +21,9 @@ function App() {
         "home",
         "about",
         "skills",
-      
+        "Education",
         "projects",
-        "education",
         "certificates",
-        "blog",
         "resume",
         "contact",
       ];
@@ -94,11 +92,15 @@ function App() {
             <Skills />
         </section>
 
-        {/* Add the new Tech component with floating animation */}
-          
         <section id="projects">
           <Layout>
             <Projects />
+          </Layout>
+        </section>
+
+         <section id="Education">
+          <Layout>
+            <Education />
           </Layout>
         </section>
 

@@ -192,10 +192,10 @@ const Contact = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-center">
+        <h2 className="text-2xl sm:text-2xl lg:text-4xl font-bold text-white mb-4 text-center">
           Let's Connect & Collaborate
         </h2>
-        <p className="text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 text-base sm:text-lg lg:text-xl">
+        <p className="text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 text-base sm:text-lg lg:text-md">
           Whether it's a new project, a collaboration, or just to say hi — I'll
           love to hear from you!
         </p>
