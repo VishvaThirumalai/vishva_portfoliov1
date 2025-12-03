@@ -13,7 +13,8 @@ const Projects = () => {
       status: "Completed",
       links: [
         { name: "Live Demo", url: "https://outpass-frontend.onrender.com/" },
-        { name: "GitHub", url: "https://github.com/VishvaThirumalai/outpass-frontendv2.git" }
+        { name: "GitHub Frontend", url: "https://github.com/VishvaThirumalai/outpass-frontendv2.git" },
+        { name: "GitHub Backend", url: "https://github.com/VishvaThirumalai/outpass-backendv1.git" }
       ],
       team: [
         { role: "Full Stack Developer", name: "Vishva" }
@@ -30,7 +31,8 @@ const Projects = () => {
       status: "Completed",
       links: [
         { name: "View Project", url: "https://hotelbooking-frontendv1.onrender.com" },
-        { name: "GitHub", url: "https://github.com/VishvaThirumalai/hotelbooking_frontendv1.git" }
+        { name: "GitHub Frontend", url: "https://github.com/VishvaThirumalai/hotelbooking_frontendv1.git" },
+        { name: "GitHub Backend", url: "https://github.com/VishvaThirumalai/hotelbooking_backendv1.git" }
       ],
       team: [
         { role: "Backend Developer", name: "Ashok Kumar & Vishva" },
@@ -48,7 +50,8 @@ const Projects = () => {
       status: "Completed",
       links: [
         { name: "Live Demo", url: "https://text-analyser-frontend-v1.onrender.com/" },
-        { name: "GitHub", url: "https://github.com/VishvaThirumalai/text-analyser-frontend-v1.git" }
+        { name: "GitHub Frontend", url: "https://github.com/VishvaThirumalai/text-analyser-frontend-v1.git" },
+        { name: "GitHub Backend", url: "https://github.com/VishvaThirumalai/VishvaThirumalai-text_analyzer_backend-v0.git" }
       ],
       team: [
         { role: "AI Developer", name: "Vishva" }
@@ -115,7 +118,8 @@ const Projects = () => {
       progress: 100,
       status: "Completed",
       links: [
-        { name: "GitHub", url: "https://github.com/VishvaThirumalai/Banking-System-Simulator.git" }
+        { name: "GitHub", url: "https://github.com/VishvaThirumalai/Banking-System-Simulator.git" },
+        { name: "Documentation", url: "#" }
       ],
       team: [
         { role: "System Developer", name: "Vishva" }
@@ -134,8 +138,12 @@ const Projects = () => {
       ? projects.filter(p => ["AI & NLP", "Machine Learning"].includes(p.category))
       : projects.filter(p => p.category === "Game Development");
 
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black-900 px-4 sm:px-6 py-20 sm:py-20 relative overflow-hidden ">
+    <div className="min-h-screen flex items-center justify-center bg-black-900 px-4 sm:px-6 py-20 sm:py-20 relative overflow-hidden">
       {/* Clean Background - Same as About component */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-48 h-48 sm:w-72 sm:h-72 bg-black-500/5 rounded-full blur-3xl"></div>
@@ -160,14 +168,14 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Simplified Navigation */}
-        <div className="flex justify-center mb-10 sm:mb-12">
+        {/* Simplified Navigation - FIXED CLICK AREA */}
+        <div className="flex justify-center mb-10 sm:mb-12 relative z-30">
           <div className="inline-flex rounded-full bg-gray-800/50 backdrop-blur-sm p-1 border border-gray-700/50">
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                onClick={() => handleCategoryClick(category)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 relative z-10 ${
                   activeCategory === category
                     ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/25'
                     : 'text-gray-400 hover:text-white hover:bg-gray-700/30'
@@ -181,19 +189,20 @@ const Projects = () => {
 
         {/* Projects Grid - Clean 3-column layout with background effects */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, index) => (
             <div 
               key={project.id}
               className="group relative animate-card-enter"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Card Container with gradient border effect */}
               <div className="relative bg-gray-900/40 backdrop-blur-sm rounded-xl sm:rounded-2xl overflow-hidden border border-gray-700/30 transition-all duration-500 group-hover:border-emerald-500/50 group-hover:shadow-xl group-hover:shadow-emerald-500/10 h-full">
                 
                 {/* Animated border glow */}
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-500/5 via-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-500/5 via-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 
                 {/* Progress bar */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gray-700/30">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gray-700/30 z-10">
                   <div 
                     className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 transition-all duration-1000"
                     style={{ width: `${project.progress}%` }}
@@ -206,25 +215,25 @@ const Projects = () => {
                     className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/30 to-transparent pointer-events-none" />
                   
                   {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-gray-900/80 backdrop-blur-sm text-emerald-300 text-xs font-medium rounded-full border border-emerald-500/30">
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="px-3 py-1 bg-gray-900/80 backdrop-blur-sm text-emerald-300 text-xs font-medium rounded-full border border-emerald-500/30 pointer-events-none">
                       {project.category}
                     </span>
                   </div>
                   
                   {/* Progress */}
-                  <div className="absolute top-4 right-4">
-                    <div className="px-3 py-1 bg-gray-900/80 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/10">
+                  <div className="absolute top-4 right-4 z-20">
+                    <div className="px-3 py-1 bg-gray-900/80 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/10 pointer-events-none">
                       {project.progress}%
                     </div>
                   </div>
                   
                   {/* Status */}
-                  <div className="absolute bottom-4 left-4">
-                    <span className={`px-2 py-1 text-xs font-medium rounded-full backdrop-blur-sm ${
+                  <div className="absolute bottom-4 left-4 z-20">
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full backdrop-blur-sm pointer-events-none ${
                       project.status === 'Completed' 
                         ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                         : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
@@ -251,7 +260,7 @@ const Projects = () => {
                     {project.tags.map((tag) => (
                       <span 
                         key={tag}
-                        className="px-2 sm:px-3 py-1 bg-gray-800/50 text-cyan-300 text-xs rounded-full border border-cyan-500/20 group-hover:border-cyan-500/40 transition-all duration-300"
+                        className="px-2 sm:px-3 py-1 bg-gray-800/50 text-cyan-300 text-xs rounded-full border border-cyan-500/20 group-hover:border-cyan-500/40 transition-all duration-300 pointer-events-none"
                       >
                         {tag}
                       </span>
@@ -262,10 +271,10 @@ const Projects = () => {
                   <div className="flex items-center gap-3 mb-5 sm:mb-6">
                     {project.team.map((member, idx) => (
                       <div key={idx} className="flex items-center gap-2 sm:gap-3">
-                        <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                        <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 pointer-events-none">
                           {member.name.split(' ').map(n => n[0]).join('')}
                         </div>
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 pointer-events-none">
                           <p className="text-sm sm:text-base font-medium text-white truncate">{member.name}</p>
                           <p className="text-xs sm:text-sm text-cyan-400 truncate">{member.role}</p>
                         </div>
@@ -273,15 +282,20 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  {/* Links */}
-                  <div className="flex gap-3">
+                  {/* Links - FIXED CLICKABLE AREA */}
+                  <div className="flex flex-wrap gap-2 relative z-20">
                     {project.links.map((link, idx) => (
                       <a
                         key={idx}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 text-center px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 text-emerald-300 hover:text-white text-sm font-medium rounded-lg border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 hover:scale-105 group-hover:shadow-lg group-hover:shadow-emerald-500/10"
+                        className="flex-1 min-w-[120px] text-center px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 text-emerald-300 hover:text-white text-sm font-medium rounded-lg border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 hover:scale-105 group-hover:shadow-lg group-hover:shadow-emerald-500/10 cursor-pointer relative z-20"
+                        onClick={(e) => {
+                          if (link.url === "#") {
+                            e.preventDefault();
+                          }
+                        }}
                       >
                         {link.name}
                       </a>
@@ -293,14 +307,14 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* No Projects Message */}
+        {/* No Projects Message - FIXED CLICKABLE BUTTON */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12 sm:py-16">
+          <div className="text-center py-12 sm:py-16 relative z-30">
             <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-gray-700/50 max-w-md mx-auto">
               <p className="text-gray-400 text-lg mb-4">No projects found in this category</p>
               <button
                 onClick={() => setActiveCategory("All")}
-                className="px-6 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 transform hover:scale-105"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 transform hover:scale-105 cursor-pointer relative z-10"
               >
                 View All Projects
               </button>
@@ -335,6 +349,16 @@ const Projects = () => {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+        
+        /* Ensure buttons are clickable */
+        button, a {
+          cursor: pointer !important;
+        }
+        
+        /* Prevent any element from blocking clicks */
+        * {
+          pointer-events: auto !important;
         }
       `}</style>
     </div>
