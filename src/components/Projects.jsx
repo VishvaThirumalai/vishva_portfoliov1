@@ -12,7 +12,7 @@ const Projects = () => {
       progress: 100,
       status: "Completed",
       links: [
-        { name: "Live Demo", url: "https://outpass-frontend.onrender.com/" },
+        { name: "Live Demo", url: "https://outpass-frontendv3.onrender.com/" },
         { name: "GitHub Frontend", url: "https://github.com/VishvaThirumalai/outpass-frontendv2.git" },
         { name: "GitHub Backend", url: "https://github.com/VishvaThirumalai/outpass-backendv1.git" }
       ],
